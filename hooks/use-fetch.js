@@ -28,12 +28,14 @@ const useFetch = () => {
       const reqOptions = new RequestOptions(...Object.values(options));
 
       try {
-         const response = await fetch(process.env.URL + path, { ...reqOptions }).then((res) => {
-            if (!res.ok) {
-               throw new Error(res.status);
+         const response = await fetch(process.env.NEXT_PUBLIC_URL + path, { ...reqOptions }).then(
+            (res) => {
+               if (!res.ok) {
+                  throw new Error(res.status);
+               }
+               return res;
             }
-            return res;
-         });
+         );
          const data = await response.json();
 
          if (data) applyData(data);
