@@ -3,7 +3,11 @@ import { useRouter } from "next/router";
 import { LanguageContext, CurrentUserContext } from "../../AppContext";
 import Link from "next/link";
 import LoginModal from "../../modals/login-modal";
+import RegModal from "../../modals/registration-modal";
+import ForgotPwdModal from "../../modals/forgotpwd-modal";
+import ChangePwdModal from "../../modals/changepwd-modal";
 
+import useFetch from "../../hooks/use-fetch";
 import BrandImage from "./brandImage";
 import { FLAGS } from "../../templateObjects";
 import { LANGUAGES } from "../../languagesObjects";
@@ -22,7 +26,7 @@ export default function NavbarComponent() {
    const [showReg, setShowReg] = useState(false);
    const [showChangePwd, setShowChangePwd] = useState(false);
    const [showForgotPwd, setShowForgotPwd] = useState(false);
-   const [showMobileMenu, setShowMobileMenu] = useState(true);
+   const [showMobileMenu, setShowMobileMenu] = useState(false);
    const [showMobileFlags, setShowMobileFlags] = useState(!checkResolution ? "" : "is-hidden");
    const [navbarEndWidth, setNavbarEndWidth] = useState(!checkResolution ? { width: "140px" } : {});
 
@@ -42,6 +46,7 @@ export default function NavbarComponent() {
          }
       }
    });
+   const { err, sendRequest } = useFetch();
 
    useEffect(() => {
       let resizeTimeout = null;
@@ -67,6 +72,12 @@ export default function NavbarComponent() {
    const handleShowLogin = () => {
       setShowLogin(!showLogin);
    };
+   const handleShowReg = () => {
+      setShowReg(!showReg);
+   };
+   const handleShowChangePwd = () => {
+      setShowChangePwd(!showChangePwd);
+   };
    const handleShowForgotPwd = () => {
       setShowForgotPwd(!showForgotPwd);
    };
@@ -89,6 +100,18 @@ export default function NavbarComponent() {
             handleShowMobileFlags();
          }
       }
+   };
+
+   const options = {
+      method: "DELETE",
+      token: true,
+   };
+
+   const logOut = () => {
+      sendRequest("/logout", options, function transformData(data) {});
+      setCurrentUser(null);
+      localStorage.removeItem("dinhotoken");
+      handleShowMobileMenu();
    };
 
    //------------------------------------------------------------------------------------------------------
@@ -115,6 +138,7 @@ export default function NavbarComponent() {
                         {text.login}
                      </a>
                      <a
+                        onClick={handleShowReg}
                         className='navbar-item is-mobile is-size-5-tablet'
                         style={{ paddingLeft: "8px", paddingRight: "8px" }}
                      >
@@ -164,12 +188,14 @@ export default function NavbarComponent() {
                         </a>
                         <div className='account-dropdown-list navbar-dropdown'>
                            <a
+                              onClick={handleShowChangePwd}
                               className='navbar-item is-mobile is-size-6-tablet is-size-6-desktop'
                               style={{ paddingLeft: "8px", paddingRight: "40px" }}
                            >
                               {text.pwdchange}
                            </a>
                            <a
+                              onClick={logOut}
                               className='navbar-item is-mobile is-size-6-tablet is-size-6-desktop'
                               style={{ paddingLeft: "8px", paddingRight: "40px" }}
                            >
@@ -224,6 +250,9 @@ export default function NavbarComponent() {
          {showLogin && (
             <LoginModal showModal={handleShowLogin} showAnotherModal={handleShowForgotPwd} />
          )}
+         {showReg && <RegModal showModal={handleShowReg} />}
+         {showChangePwd && <ChangePwdModal showModal={handleShowChangePwd} />}
+         {showForgotPwd && <ForgotPwdModal showModal={handleShowForgotPwd} />}
       </div>
    );
 }
