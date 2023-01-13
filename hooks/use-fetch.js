@@ -26,8 +26,9 @@ const useFetch = () => {
 
    const sendRequest = useCallback(async (path, options, applyData) => {
       const reqOptions = new RequestOptions(...Object.values(options));
+
       try {
-         const response = await fetch(URL + path, { ...reqOptions }).then((res) => {
+         const response = await fetch(process.env.URL + path, { ...reqOptions }).then((res) => {
             if (!res.ok) {
                throw new Error(res.status);
             }
