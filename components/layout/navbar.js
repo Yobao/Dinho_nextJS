@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { LanguageContext, CurrentUserContext } from "../../AppContext";
 import Link from "next/link";
 import LoginModal from "../../modals/login-modal";
+import RegModal from "../../modals/registration-modal";
 
 import BrandImage from "./brandImage";
 import { FLAGS } from "../../templateObjects";
@@ -67,6 +68,9 @@ export default function NavbarComponent() {
    const handleShowLogin = () => {
       setShowLogin(!showLogin);
    };
+   const handleShowReg = () => {
+      setShowReg(!showReg);
+   };
    const handleShowForgotPwd = () => {
       setShowForgotPwd(!showForgotPwd);
    };
@@ -115,6 +119,7 @@ export default function NavbarComponent() {
                         {text.login}
                      </a>
                      <a
+                        onClick={handleShowReg}
                         className='navbar-item is-mobile is-size-5-tablet'
                         style={{ paddingLeft: "8px", paddingRight: "8px" }}
                      >
@@ -224,6 +229,7 @@ export default function NavbarComponent() {
          {showLogin && (
             <LoginModal showModal={handleShowLogin} showAnotherModal={handleShowForgotPwd} />
          )}
+         {showReg && <RegModal showModal={handleShowReg} />}
       </div>
    );
 }
