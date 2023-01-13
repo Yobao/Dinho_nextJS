@@ -4,6 +4,7 @@ import { LanguageContext, CurrentUserContext } from "../../AppContext";
 import Link from "next/link";
 import LoginModal from "../../modals/login-modal";
 import RegModal from "../../modals/registration-modal";
+import ForgotPwdModal from "../../modals/forgotpwd-modal";
 
 import BrandImage from "./brandImage";
 import { FLAGS } from "../../templateObjects";
