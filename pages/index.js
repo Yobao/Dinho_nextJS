@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import Rules from "../public/rules_sk.jpg";
 
-export default function Home() {
+export default function Home(props) {
    const applanguage = [];
 
    return (
@@ -46,14 +48,14 @@ export default function Home() {
                {"Example"}
             </h2>
 
-            {/*             <figure className='image is-inline-block column'>
-               <img
-                  src={"RULES IMAGE"}
+            <figure className='image is-inline-block column'>
+               <Image
+                  src={Rules}
                   className=''
-                  onLoad={() => setIsLoading(false)}
-                  style={!isLoading ? {} : { display: "none" }}
+                  /* onLoad={() => setIsLoading(false)}
+                  style={!isLoading ? {} : { display: "none" }} */
                />
-            </figure> */}
+            </figure>
          </div>
       </React.Fragment>
    );
