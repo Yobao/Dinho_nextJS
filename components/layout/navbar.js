@@ -5,6 +5,7 @@ import Link from "next/link";
 import LoginModal from "../../modals/login-modal";
 import RegModal from "../../modals/registration-modal";
 import ForgotPwdModal from "../../modals/forgotpwd-modal";
+import ChangePwdModal from "../../modals/changepwd-modal";
 
 import BrandImage from "./brandImage";
 import { FLAGS } from "../../templateObjects";
@@ -71,6 +72,9 @@ export default function NavbarComponent() {
    };
    const handleShowReg = () => {
       setShowReg(!showReg);
+   };
+   const handleShowChangePwd = () => {
+      setShowChangePwd(!showChangePwd);
    };
    const handleShowForgotPwd = () => {
       setShowForgotPwd(!showForgotPwd);
@@ -170,6 +174,7 @@ export default function NavbarComponent() {
                         </a>
                         <div className='account-dropdown-list navbar-dropdown'>
                            <a
+                              onClick={handleShowChangePwd}
                               className='navbar-item is-mobile is-size-6-tablet is-size-6-desktop'
                               style={{ paddingLeft: "8px", paddingRight: "40px" }}
                            >
@@ -205,7 +210,7 @@ export default function NavbarComponent() {
                               className='navbar-item'
                               key={FLAGS[country].text}
                               value={FLAGS[country].code}
-                              onClick={handleChangeLanguage}
+                              onClick={handleShowChangePwd}
                            >
                               <div className='columns is-mobile has-text-centered'>
                                  <div className='column is-mobile has-text-right px-0'>
@@ -231,6 +236,7 @@ export default function NavbarComponent() {
             <LoginModal showModal={handleShowLogin} showAnotherModal={handleShowForgotPwd} />
          )}
          {showReg && <RegModal showModal={handleShowReg} />}
+         {showChangePwd && <ChangePwdModal showModal={handleShowChangePwd} />}
          {showForgotPwd && <ForgotPwdModal showModal={handleShowForgotPwd} />}
       </div>
    );
