@@ -1,8 +1,8 @@
 import React, { useState, useContext, useCallback, useMemo } from "react";
-import ReactDOM from "react-dom";
 import useFetch from "../hooks/use-fetch";
 import { LanguageContext, CurrentUserContext } from "../AppContext";
 
+import Portal from "./../HOC/Portal";
 import ModalComponent from "../components/modal";
 import toastik from "../components/ui/toast";
 
@@ -188,23 +188,18 @@ const RegModal = ({ showModal }) => {
    };
 
    return (
-      <React.Fragment>
-         {ReactDOM.createPortal(
-            <React.Fragment>
-               <ModalComponent
-                  language={applanguage.regModal}
-                  handleInputs={handleInputs}
-                  handleButtons={buttons}
-                  userData={userData}
-                  inputColors={inputColors}
-                  showModal={showModal}
-                  showEye={false}
-                  dropdown={dropdownData}
-               />
-            </React.Fragment>,
-            document.getElementById("modal-root")
-         )}
-      </React.Fragment>
+      <Portal>
+         <ModalComponent
+            language={applanguage.regModal}
+            handleInputs={handleInputs}
+            handleButtons={buttons}
+            userData={userData}
+            inputColors={inputColors}
+            showModal={showModal}
+            showEye={false}
+            dropdown={dropdownData}
+         />
+      </Portal>
    );
 };
 
