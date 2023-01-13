@@ -1,8 +1,9 @@
 import React, { useState, useContext, useCallback, useMemo } from "react";
 import useFetch from "../hooks/use-fetch";
 import { LanguageContext, CurrentUserContext } from "../AppContext";
-import ModalComponent from "../components/modal";
+
 import Portal from "./../HOC/Portal";
+import ModalComponent from "../components/modal";
 import toastik from "../components/ui/toast";
 
 const LoginModal = ({ showModal, showAnotherModal: showForgotPwd }) => {

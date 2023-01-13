@@ -230,6 +230,7 @@ export default function NavbarComponent() {
             <LoginModal showModal={handleShowLogin} showAnotherModal={handleShowForgotPwd} />
          )}
          {showReg && <RegModal showModal={handleShowReg} />}
+         {showForgotPwd && <ForgotPwdModal showModal={handleShowForgotPwd} />}
       </div>
    );
 }
