@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "../styles/globals.scss";
 import Layout from "../components/layout/layout";
-
-import { LanguageContext } from "../AppContext";
-
+import { LanguageContext, CurrentUserContext } from "../AppContext";
 import { LANGUAGES } from "../languagesObjects";
 import { SLOVAK, CZECH, ENGLISH } from "../languagesObjects";
 
 function MyApp({ Component, pageProps }) {
    const TRANSLATIONS = { SLOVAK, CZECH, ENGLISH };
-   const [applanguage, setApplanguage] = useState();
+   const [applanguage, setApplanguage] = useState(null);
+   const [currentUser, setCurrentUser] = useState(null);
    const [isLoading, setIsLoading] = useState(true);
 
    useEffect(() => {
@@ -17,7 +16,6 @@ function MyApp({ Component, pageProps }) {
          setApplanguage(() => {
             for (const language in LANGUAGES) {
                if (LANGUAGES[language].includes(localStorage.getItem("dinholanguage"))) {
-                  console.log(TRANSLATIONS[language]);
                   return TRANSLATIONS[language];
                }
             }
@@ -35,9 +33,11 @@ function MyApp({ Component, pageProps }) {
 
    return (
       <LanguageContext.Provider value={{ applanguage, setApplanguage }}>
-         <Layout>
-            <Component {...pageProps} />
-         </Layout>
+         <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
+            <Layout>
+               <Component {...pageProps} />
+            </Layout>
+         </CurrentUserContext.Provider>
       </LanguageContext.Provider>
    );
 }

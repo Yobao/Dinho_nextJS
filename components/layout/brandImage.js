@@ -3,10 +3,10 @@ import Brand from "../../public/brand.png";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function BrandImage() {
+export default function BrandImage({ style }) {
    return (
       <Link href='/'>
-         <Image src={Brand} style={{ maxHeight: "90px" }} width={98.7} height={90} />
+         <Image src={Brand} style={style} width={style.width} height={style.height} />
       </Link>
    );
 }
