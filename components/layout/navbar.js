@@ -7,6 +7,7 @@ import RegModal from "../../modals/registration-modal";
 import ForgotPwdModal from "../../modals/forgotpwd-modal";
 import ChangePwdModal from "../../modals/changepwd-modal";
 
+import useFetch from "../../hooks/use-fetch";
 import BrandImage from "./brandImage";
 import { FLAGS } from "../../templateObjects";
 import { LANGUAGES } from "../../languagesObjects";
@@ -25,7 +26,7 @@ export default function NavbarComponent() {
    const [showReg, setShowReg] = useState(false);
    const [showChangePwd, setShowChangePwd] = useState(false);
    const [showForgotPwd, setShowForgotPwd] = useState(false);
-   const [showMobileMenu, setShowMobileMenu] = useState(true);
+   const [showMobileMenu, setShowMobileMenu] = useState(false);
    const [showMobileFlags, setShowMobileFlags] = useState(!checkResolution ? "" : "is-hidden");
    const [navbarEndWidth, setNavbarEndWidth] = useState(!checkResolution ? { width: "140px" } : {});
 
@@ -45,6 +46,7 @@ export default function NavbarComponent() {
          }
       }
    });
+   const { err, sendRequest } = useFetch();
 
    useEffect(() => {
       let resizeTimeout = null;
@@ -98,6 +100,18 @@ export default function NavbarComponent() {
             handleShowMobileFlags();
          }
       }
+   };
+
+   const options = {
+      method: "DELETE",
+      token: true,
+   };
+
+   const logOut = () => {
+      sendRequest("/logout", options, function transformData(data) {});
+      setCurrentUser(null);
+      localStorage.removeItem("dinhotoken");
+      handleShowMobileMenu();
    };
 
    //------------------------------------------------------------------------------------------------------
@@ -181,6 +195,7 @@ export default function NavbarComponent() {
                               {text.pwdchange}
                            </a>
                            <a
+                              onClick={logOut}
                               className='navbar-item is-mobile is-size-6-tablet is-size-6-desktop'
                               style={{ paddingLeft: "8px", paddingRight: "40px" }}
                            >
@@ -210,7 +225,7 @@ export default function NavbarComponent() {
                               className='navbar-item'
                               key={FLAGS[country].text}
                               value={FLAGS[country].code}
-                              onClick={handleShowChangePwd}
+                              onClick={handleChangeLanguage}
                            >
                               <div className='columns is-mobile has-text-centered'>
                                  <div className='column is-mobile has-text-right px-0'>
