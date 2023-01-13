@@ -214,7 +214,7 @@ export default function NavbarComponent() {
                         className='navbar-link is-arrowless has-text-centered'
                         onClick={handleShowMobileFlags}
                      >
-                        <img src={defaultLanguage.flag}></img>
+                        {defaultLanguage && <img src={defaultLanguage.flag}></img>}
                      </a>
                      <div
                         className={`navbar-dropdown is-boxed ${showMobileFlags} custom-navbar-end`}

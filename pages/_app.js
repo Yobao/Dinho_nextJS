@@ -51,6 +51,7 @@ function MyApp({ Component, pageProps }) {
                   return TRANSLATIONS[language];
                }
             }
+            localStorage.setItem("dinholanguage", "cs");
             return TRANSLATIONS["CZECH"];
          });
 
