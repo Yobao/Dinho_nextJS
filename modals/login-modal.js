@@ -1,8 +1,8 @@
 import React, { useState, useContext, useCallback, useMemo } from "react";
-import ReactDOM from "react-dom";
 import useFetch from "../hooks/use-fetch";
-//import { CurrentUserContext, LanguageContext } from "../store/user-context";
+import { LanguageContext, CurrentUserContext } from "../AppContext";
 import ModalComponent from "../components/modal";
+import Portal from "./../HOC/Portal";
 import toastik from "../components/ui/toast";
 
 const LoginModal = ({ showModal, showAnotherModal: showForgotPwd }) => {
@@ -105,23 +105,18 @@ const LoginModal = ({ showModal, showAnotherModal: showForgotPwd }) => {
    };
 
    return (
-      <React.Fragment>
-         {ReactDOM.createPortal(
-            <React.Fragment>
-               <ModalComponent
-                  language={applanguage.loginModal}
-                  handleInputs={handleInputs}
-                  handleButtons={buttons}
-                  userData={userData}
-                  inputColors={inputColors}
-                  showModal={showModal}
-                  showEye={true}
-                  isLoading={isLoading}
-               />
-            </React.Fragment>,
-            document.getElementById("modal-root")
-         )}
-      </React.Fragment>
+      <Portal>
+         <ModalComponent
+            language={applanguage.loginModal}
+            handleInputs={handleInputs}
+            handleButtons={buttons}
+            userData={userData}
+            inputColors={inputColors}
+            showModal={showModal}
+            showEye={true}
+            isLoading={isLoading}
+         />
+      </Portal>
    );
 };
 
