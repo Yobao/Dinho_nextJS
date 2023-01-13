@@ -23,7 +23,7 @@ const DropdownComponent = ({
    const handleShowMenu = () => {
       if (!showMenu) return setShowMenu("is-active");
       return setTimeout(() => {
-         document.getElementById("dropdownButton").blur();
+         //document.getElementById("dropdownButton").blur();
          setShowMenu(null);
       }, 150);
    };
