@@ -16,15 +16,15 @@ export default function NavbarComponent() {
                   {"Tabuľka"}
                </Link>
                {/* IF USER IS NOT LOGGED IN */}
-               {/*                <a className='navbar-item is-mobile is-size-5-tablet'>Prihlásiť</a>
-               <a className='navbar-item is-mobile is-size-5-tablet'>Registrovať</a> */}
+               <a className='navbar-item is-mobile is-size-5-tablet'>Prihlásiť</a>
+               <a className='navbar-item is-mobile is-size-5-tablet'>Registrovať</a>
                {/* IF USER IS LOGGED IN */}
-               <Link href='/bet' className='navbar-item is-mobile is-size-5-tablet'>
+               {/* <Link href='/bet' className='navbar-item is-mobile is-size-5-tablet'>
                   Tipuj
                </Link>
                <Link href='/profil' className='navbar-item is-mobile is-size-5-tablet'>
                   Profil
-               </Link>
+               </Link> */}
             </div>
 
             <div className={`navbar-menu`}>
