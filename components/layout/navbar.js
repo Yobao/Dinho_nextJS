@@ -108,13 +108,12 @@ export default function NavbarComponent() {
    };
 
    const logOut = () => {
+      router.replace("/");
       sendRequest("/logout", options, function transformData(data) {});
       setCurrentUser(null);
       localStorage.removeItem("dinhotoken");
       handleShowMobileMenu();
    };
-
-   //------------------------------------------------------------------------------------------------------
 
    return (
       <div className='columns my-3 mx-0 is-centered is-mobile'>

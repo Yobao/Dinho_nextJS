@@ -47,7 +47,7 @@ const BettingPage = () => {
       let pusher = new Pusher(process.env.NEXT_PUBLIC_WS, {
          channelAuthorization: {
             headers: { Authorization: `Bearer ${localStorage.getItem("dinhotoken")}` },
-            endpoint: `${process.env.NEXT_PUBLIC_URL}}/auth`,
+            endpoint: `${process.env.NEXT_PUBLIC_URL}/auth`,
          },
          cluster: "eu",
       });
