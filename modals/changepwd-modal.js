@@ -15,7 +15,7 @@ const ChangePwdModal = ({ showModal }) => {
    const [oldPwdColor, setOldPwdColor] = useState();
    const [newPwdColor, setNewPwdColor] = useState();
    const [submitSent, setSubmitSent] = useState(false);
-   const navigate = useRouter();
+   const router = useRouter();
 
    const handleOldPwd = useCallback(
       (e) => {
@@ -69,7 +69,7 @@ const ChangePwdModal = ({ showModal }) => {
       }
       if (data === 500) return toastik(alerts.somethingWrong);
       showModal();
-      navigate.replace("/");
+      router.push("/");
    };
 
    const changePassword = useCallback(() => {

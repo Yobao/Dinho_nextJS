@@ -1,6 +1,6 @@
 import React, { useState, useContext, useCallback, useMemo, useRef } from "react";
 import useFetch from "../hooks/use-fetch";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import { LanguageContext, CurrentUserContext } from "../AppContext";
 import ModalComponent from "../components/modal";
 import toastik from "../components/ui/toast";
@@ -15,7 +15,7 @@ const MailPwdModal = () => {
    const [password2Color, setPassword2Color] = useState();
    const urlToken = useRef(location.pathname.split("/").pop());
    const [submitSent, setSubmitSent] = useState(false);
-   const navigate = useNavigate();
+   const router = useRouter();
 
    const handlePassword1 = useCallback(
       (e) => {
@@ -70,7 +70,7 @@ const MailPwdModal = () => {
    const transformData = (data) => {
       if (data === 400 || data === 409) return toastik(alerts.pwdMin);
       if (data === 404 || data === 500) return toastik(alerts.somethingWrong);
-      navigate("/");
+      router.push("/");
    };
 
    const changePassword = () => {
