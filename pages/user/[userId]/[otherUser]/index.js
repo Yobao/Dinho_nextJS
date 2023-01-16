@@ -26,7 +26,7 @@ const UserOtherPage = () => {
    const options = { method: "GET", undefined, accept: true };
    const { err, sendRequest } = useFetch();
    const transformData = (data) => {
-      if (data.length === 0) return router.replace("/");
+      if (data.length === 0) return router.push("/");
       setTableData(data.reverse());
    };
 

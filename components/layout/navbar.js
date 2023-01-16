@@ -108,7 +108,7 @@ export default function NavbarComponent() {
    };
 
    const logOut = () => {
-      router.replace("/");
+      router.push("/");
       sendRequest("/logout", options, function transformData(data) {});
       setCurrentUser(null);
       localStorage.removeItem("dinhotoken");
