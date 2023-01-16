@@ -63,10 +63,6 @@ function MyApp({ Component, pageProps }) {
       };
    }, []);
 
-   if (typeof window !== "undefined") {
-      console.log(window.history);
-   }
-
    if (isLoading) return;
    if (router.route.includes("/changepassword"))
       return (
