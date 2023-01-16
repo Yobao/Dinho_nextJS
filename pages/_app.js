@@ -64,6 +64,12 @@ function MyApp({ Component, pageProps }) {
    }, []);
 
    if (isLoading) return;
+   if (route.route.includes("/changepassword"))
+      return (
+         <LanguageContext.Provider value={{ applanguage, setApplanguage }}>
+            <Component {...pageProps} />
+         </LanguageContext.Provider>
+      );
 
    return (
       <LanguageContext.Provider value={{ applanguage, setApplanguage }}>
