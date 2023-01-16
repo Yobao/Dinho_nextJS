@@ -13,8 +13,8 @@ import { LANGUAGES } from "../languagesObjects";
 import { SLOVAK, CZECH, ENGLISH } from "../languagesObjects";
 
 function MyApp({ Component, pageProps }) {
-   const route = useRouter();
-   const location = route.route;
+   const router = useRouter();
+   const location = router.route;
    const urlPreCheck = Number(
       location.slice(
          location.split("/", 2).join("/").length + 1,
@@ -63,8 +63,12 @@ function MyApp({ Component, pageProps }) {
       };
    }, []);
 
+   if (typeof window !== "undefined") {
+      console.log(window.history);
+   }
+
    if (isLoading) return;
-   if (route.route.includes("/changepassword"))
+   if (router.route.includes("/changepassword"))
       return (
          <LanguageContext.Provider value={{ applanguage, setApplanguage }}>
             <Component {...pageProps} />

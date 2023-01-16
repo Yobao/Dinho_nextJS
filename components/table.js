@@ -5,11 +5,11 @@ import { useRouter } from "next/router";
 const TableComponent = ({ head, body, data, position }) => {
    const { otherUser, setOtherUser } = useContext(OtherUserContext);
    const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
-   const navigate = useRouter();
+   const router = useRouter();
 
    const handleNavigate = (path) => {
       setOtherUser(`/${path}`);
-      navigate.replace(`/${path}`);
+      router.push(`/${path}`);
    };
 
    return (
