@@ -52,7 +52,10 @@ export default function NavbarComponent() {
     let resizeTimeout = null;
     const resize = () => {
       clearTimeout(resizeTimeout);
-      if (router.route === "/" && showMobileFlags) setShowMobileFlags("is-hidden");
+      if (router.route === "/" && window.matchMedia("(min-width: 1024px)").matches) {
+        document.querySelector("#navbar-flags").classList.add("is-hidden");
+        setShowMobileFlags("is-hidden");
+      }
 
       resizeTimeout = setTimeout(() => {
         if (router.route === "/") {
@@ -218,6 +221,7 @@ export default function NavbarComponent() {
                 {defaultLanguage && <img src={defaultLanguage.flag}></img>}
               </a>
               <div
+                id='navbar-flags'
                 className={`navbar-dropdown is-boxed ${showMobileFlags} custom-navbar-end`}
                 style={navbarEndWidth}
               >
